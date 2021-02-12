@@ -427,7 +427,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startWaypoint: {fileID: 1239277654716420227}
-  endWaypoint: {fileID: 1239277654716420227}
+  endWaypoint: {fileID: 1415053004}
 --- !u!1001 &659070081
 PrefabInstance:
   m_ObjectHideFlags: 0
