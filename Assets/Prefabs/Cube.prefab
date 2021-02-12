@@ -92,7 +92,7 @@ TextMesh:
   m_Font: {fileID: 0}
   m_Color:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4278190080
 --- !u!1 &1239277655359656351
 GameObject:
   m_ObjectHideFlags: 0
@@ -668,6 +668,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6892962495708532348}
   - component: {fileID: 1239277654716420228}
+  - component: {fileID: 3613910527618035851}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -708,3 +709,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridSize: 10
+--- !u!114 &3613910527618035851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2511638902640773838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55250c8728bfe4fbb81ad544a0ed63eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
