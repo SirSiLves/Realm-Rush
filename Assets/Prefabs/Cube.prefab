@@ -720,3 +720,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55250c8728bfe4fbb81ad544a0ed63eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exploredColor: {r: 0.4056604, g: 0.4056604, b: 0.4056604, a: 1}
+  isExplored: 0
+  exploredFrom: {fileID: 0}

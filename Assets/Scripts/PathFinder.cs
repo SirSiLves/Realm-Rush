@@ -6,11 +6,12 @@ using UnityEngine;
 public class PathFinder : MonoBehaviour
 {
 
-    [SerializeField] Waypoint startWaypoint, endWaypoint;
+    [SerializeField] public Waypoint startWaypoint, endWaypoint;
 
     Dictionary<Vector2Int, Waypoint> grid = new Dictionary<Vector2Int, Waypoint>();
     Queue<Waypoint> queue = new Queue<Waypoint>();
     bool isRunning = true;
+    Waypoint searchCenter; // the current searchCenter
 
     Vector2Int[] directions =
     {
@@ -19,6 +20,16 @@ public class PathFinder : MonoBehaviour
         Vector2Int.down,
         Vector2Int.left
     };
+
+    public Waypoint getStartPoint()
+    {
+        return startWaypoint;
+    }
+
+    public Waypoint getEndPoint()
+    {
+        return endWaypoint;
+    }
 
     void Start()
     {
@@ -34,15 +45,15 @@ public class PathFinder : MonoBehaviour
 
         while(queue.Count > 0 && isRunning)
         {
-            var searchCenter = queue.Dequeue();
-            HaltIfEndFound(searchCenter);
-            ExploreNeighbours(searchCenter);
+            searchCenter = queue.Dequeue();
+            HaltIfEndFound();
+            ExploreNeighbours();
             searchCenter.isExplored = true;
         }
 
     }
 
-    private void HaltIfEndFound(Waypoint searchCenter)
+    private void HaltIfEndFound()
     {
         if (searchCenter == endWaypoint)
         {
@@ -50,13 +61,13 @@ public class PathFinder : MonoBehaviour
         }
     }
 
-    private void ExploreNeighbours(Waypoint from)
+    private void ExploreNeighbours()
     {
         if (!isRunning) { return; }
 
         foreach (Vector2Int direction in directions)
         {
-            Vector2Int neighbourCoordinates = from.GetGridPos() + direction;
+            Vector2Int neighbourCoordinates = searchCenter.GetGridPos() + direction;
             try
             {
                 QueueNewNeighbours(neighbourCoordinates);
@@ -71,11 +82,14 @@ public class PathFinder : MonoBehaviour
     private void QueueNewNeighbours(Vector2Int neighbourCoordinates)
     {
         Waypoint neighbour = grid[neighbourCoordinates];
-        if (neighbour.isExplored) { /* do nothing */ }
+        if (neighbour.isExplored || queue.Contains(neighbour))
+        {
+            // do nothing
+        }
         else
         {
-            neighbour.SetTopColor(Color.blue);
             queue.Enqueue(neighbour);
+            neighbour.exploredFrom = searchCenter;
         }
     }
 

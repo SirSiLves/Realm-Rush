@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class Waypoint : MonoBehaviour
 {
+    [SerializeField] Color exploredColor = Color.gray;
 
-    public bool isExplored = false; // ok as is a data class
+    // public ok as is a data class
+    public bool isExplored = false;
+    public Waypoint exploredFrom;
+
 
     // Vector2Int gridPos;
 
@@ -14,6 +18,21 @@ public class Waypoint : MonoBehaviour
     public int GetGridSize()
     {
         return gridSize;
+    }
+
+
+    void Update()
+    {
+
+        PathFinder pathfinder = gameObject.GetComponentInParent<PathFinder>();
+        if (pathfinder.getStartPoint() == this) { return;  }
+        else if (pathfinder.getEndPoint() == this) { return; }
+
+        if (isExplored)
+        {
+            this.SetTopColor(exploredColor);
+        }
+
     }
 
     public Vector2Int GetGridPos()
