@@ -25,8 +25,8 @@ public class Waypoint : MonoBehaviour
     {
 
         PathFinder pathfinder = gameObject.GetComponentInParent<PathFinder>();
-        if (pathfinder.getStartPoint() == this) { return;  }
-        else if (pathfinder.getEndPoint() == this) { return; }
+        if (pathfinder.GetStartPoint() == this) { return;  }
+        else if (pathfinder.GetEndPoint() == this) { return; }
 
         if (isExplored)
         {

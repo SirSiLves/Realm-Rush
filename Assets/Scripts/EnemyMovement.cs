@@ -9,7 +9,7 @@ public class EnemyMovement : MonoBehaviour
     void Start()
     {
         PathFinder pathFinder = FindObjectOfType<PathFinder>();
-        var path = pathFinder.getPath();
+        var path = pathFinder.GetPath();
         StartCoroutine(FollowPath(path));
     }
 
@@ -21,7 +21,9 @@ public class EnemyMovement : MonoBehaviour
             transform.position = waypoint.transform.position;
             yield return new WaitForSeconds(2f); // execute async rest of the foreach
         }
+
     }
 
 
 }
+
