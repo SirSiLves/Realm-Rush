@@ -4,35 +4,26 @@ using UnityEngine;
 
 public class Waypoint : MonoBehaviour
 {
-    [SerializeField] Color exploredColor = Color.gray;
+    //[SerializeField] Color exploredColor = Color.gray;
 
     // public ok as is a data class
     public bool isExplored = false;
     public Waypoint exploredFrom;
+    public bool isPlacable = true;
 
 
     // Vector2Int gridPos;
 
     const int gridSize = 10;
 
+    void Start()
+    {
+        Physics.queriesHitTriggers = true;
+    }
+
     public int GetGridSize()
     {
         return gridSize;
-    }
-
-
-    void Update()
-    {
-
-        PathFinder pathfinder = gameObject.GetComponentInParent<PathFinder>();
-        if (pathfinder.GetStartPoint() == this) { return;  }
-        else if (pathfinder.GetEndPoint() == this) { return; }
-
-        if (isExplored)
-        {
-            this.SetTopColor(exploredColor);
-        }
-
     }
 
     public Vector2Int GetGridPos()
@@ -43,9 +34,39 @@ public class Waypoint : MonoBehaviour
         );
     }
 
-    public void SetTopColor(Color color)
+    void OnMouseOver()
     {
-        MeshRenderer topMeshRenderer = transform.Find("Top").GetComponent<MeshRenderer>();
-        topMeshRenderer.material.color = color;
+        if (Input.GetMouseButtonDown(0)) // left click
+        {
+            if (isPlacable)
+            {
+                
+            }
+            else
+            {
+                // block
+            }
+        }
+
     }
+
+    //void Update()
+    //{
+
+    //    PathFinder pathfinder = gameObject.GetComponentInParent<PathFinder>();
+    //    if (pathfinder.GetStartPoint() == this) { return;  }
+    //    else if (pathfinder.GetEndPoint() == this) { return; }
+
+    //    if (isExplored)
+    //    {
+    //        this.SetTopColor(exploredColor);
+    //    }
+
+    //}
+
+    //public void SetTopColor(Color color)
+    //{
+    //    MeshRenderer topMeshRenderer = transform.Find("Top").GetComponent<MeshRenderer>();
+    //    topMeshRenderer.material.color = color;
+    //}
 }

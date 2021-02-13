@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
+
     // Paremeters
     [SerializeField] Transform objectToPan;
     [SerializeField] float attackRange = 30f;
@@ -12,7 +13,6 @@ public class Tower : MonoBehaviour
 
     //State of each tower
     Transform targetEnemy;
-
 
     // Update is called once per frame
     void Update()
@@ -28,7 +28,6 @@ public class Tower : MonoBehaviour
         {
             Shoot(false);
         }
-
     }
 
     private void SetTargetEnemy()
@@ -73,4 +72,5 @@ public class Tower : MonoBehaviour
         ParticleSystem.EmissionModule emissionModule = projectileParticle.emission;
         emissionModule.enabled = active;
     }
+
 }

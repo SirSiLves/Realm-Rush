@@ -35,35 +35,40 @@ public class PathFinder : MonoBehaviour
     private void CalculatePath()
     {
         LoadBlock();
-        ColorStartAndEnd();
+        //ColorStartAndEnd();
         BreadthFirstSearch();
         CreatePath();
     }
 
-    public Waypoint GetStartPoint()
-    {
-        return startWaypoint;
-    }
+    //public Waypoint GetStartPoint()
+    //{
+    //    return startWaypoint;
+    //}
 
-    public Waypoint GetEndPoint()
-    {
-        return endWaypoint;
-    }
-
+    //public Waypoint GetEndPoint()
+    //{
+    //    return endWaypoint;
+    //}
 
     private void CreatePath()
     {
-        path.Add(endWaypoint);
+        SetAsPath(endWaypoint);
 
         Waypoint previous = endWaypoint.exploredFrom;
         while (previous != startWaypoint)
         {
-            path.Add(previous);
             previous = previous.exploredFrom;
+            SetAsPath(previous);
         }
 
-        path.Add(startWaypoint);
+        SetAsPath(startWaypoint);
         path.Reverse();
+    }
+
+    private void SetAsPath(Waypoint waypoint)
+    {
+        path.Add(waypoint);
+        waypoint.isPlacable = false;
     }
 
     private void BreadthFirstSearch()
@@ -117,11 +122,11 @@ public class PathFinder : MonoBehaviour
         }
     }
 
-    private void ColorStartAndEnd()
-    {
-        startWaypoint.SetTopColor(Color.green);
-        endWaypoint.SetTopColor(Color.red);
-    }
+    //private void ColorStartAndEnd()
+    //{
+    //    startWaypoint.SetTopColor(Color.green);
+    //    endWaypoint.SetTopColor(Color.red);
+    //}
 
     private void LoadBlock()
     {
