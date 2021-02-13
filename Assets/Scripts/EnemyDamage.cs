@@ -7,6 +7,8 @@ public class EnemyDamage : MonoBehaviour
 {
 
     [SerializeField] int hitPoints = 10;
+    [SerializeField] ParticleSystem hitParticalePrefab;
+    [SerializeField] ParticleSystem deathParticalePrefab;
 
     void Start()
     {
@@ -18,18 +20,21 @@ public class EnemyDamage : MonoBehaviour
         ProcessHit();
         if (hitPoints <= 0)
         {
-            killEnemy();
+            KillEnemy();
         }
     }
 
-    private void killEnemy()
+    private void KillEnemy()
     {
+        var vfx = Instantiate(deathParticalePrefab, transform.position, Quaternion.identity);
+        vfx.Play();
         Destroy(gameObject);
     }
 
     void ProcessHit()
     {
         hitPoints--;
+        hitParticalePrefab.Play();
     }
 
 }

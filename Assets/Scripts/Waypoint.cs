@@ -11,6 +11,7 @@ public class Waypoint : MonoBehaviour
     public Waypoint exploredFrom;
     public bool isPlacable = true;
 
+    [SerializeField] Tower towerPrefab;
 
     // Vector2Int gridPos;
 
@@ -40,7 +41,8 @@ public class Waypoint : MonoBehaviour
         {
             if (isPlacable)
             {
-                
+                Instantiate(towerPrefab, transform.position, Quaternion.identity);
+                isPlacable = false;
             }
             else
             {
