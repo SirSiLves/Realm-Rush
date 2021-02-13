@@ -5,7 +5,7 @@ using UnityEngine;
 public class TowerFactory : MonoBehaviour
 {
 
-    [SerializeField] int towerLimit = 5;
+    [SerializeField] int towerLimit = 7;
     [SerializeField] Tower towerPrefab;
     [SerializeField] Transform towerParentTransform;
 
